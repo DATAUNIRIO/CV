@@ -10,7 +10,7 @@
 
 % to avoid warnings, copy only one symbol from stmaryrd
 \DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
-\DeclareMathSymbol\rightarrowtriangle\mathrel{stmry}{"5F}
+%\DeclareMathSymbol\rightarrowtriangle\mathrel{stmry}{"5F}
 \renewcommand{\to}{$\rightarrowtriangle$}
 
 %%%%%%%%%%
@@ -146,20 +146,33 @@ minimum height=2cm, yshift=0.5mm] (box) at (current page.north){};
 %%%%%%%%%%%%%%%%%%%%
 
 \setlength{\tabcolsep}{0pt}
+%\newenvironment{entrylist}{%
+%	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+%	}{%
+%	\end{tabular*}
+%}
+%\renewcommand{\bfseries}{\headingfont\color{headercolor}}
+%\newcommand{\entry}[4]{%
+%	#1&\parbox[t]{11.8cm}{%
+%		\textbf{#2}%
+%		\hfill%
+%		{\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+%		#4\vspace{\parsep}%
+%	}\\}
+\usepackage{enumitem}
 \newenvironment{entrylist}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}p{2cm}l}
-}{%
-  \end{tabular*}
+	\begin{itemize}[leftmargin=1in]%[leftmargin=*,align=left,itemindent=-\dimexpr\labelwidth+\labelindent+\labelsep\relax]
+	}{%
+	\end{itemize}
 }
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
-\newcommand{\entry}[4]{%
-\hangindent=3mm \hangafter1%
-  {\leavevmode\color{gray}\small #1}&\parbox[t]{11.8cm}{%
-    \textbf{#2}%
-    \hfill%
-    {\footnotesize\color{gray} \bodyfont #3}\\%
-    \bodyfont #4\vspace{\parsep}%
-  }\\}
+\newenvironment{\entry}[4]{%
+	\item[#1]
+	\textbf{#2}%
+	\hfill%
+	{\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+	#4\vspace{\parsep}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Manual Bibliography %
